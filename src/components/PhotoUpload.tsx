@@ -111,36 +111,49 @@ export function PhotoUpload({ onUploadComplete }: PhotoUploadProps) {
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        className={`border-2 border-dashed rounded-xl p-8 text-center transition-all ${
+        className={`border-2 border-dashed rounded-2xl p-12 text-center transition-all duration-300 ${
           isDragging
-            ? 'border-blue-500 bg-blue-50'
-            : 'border-gray-300 bg-white hover:border-gray-400'
-        } ${uploading ? 'pointer-events-none opacity-50' : ''}`}
+            ? 'border-blue-500 bg-blue-50 shadow-lg shadow-blue-500/20'
+            : 'border-slate-300 bg-gradient-to-br from-white to-slate-50 hover:border-slate-400 hover:shadow-md'
+        } ${uploading ? 'pointer-events-none opacity-60' : ''}`}
       >
-        <Upload className="w-12 h-12 mx-auto mb-4 text-gray-400" />
-        <p className="text-lg font-medium text-gray-700 mb-2">
-          {uploading ? 'Uploading...' : 'Drop photos here or click to upload'}
+        <div className="flex justify-center mb-4">
+          <div className={`p-3 rounded-full transition-all ${
+            isDragging
+              ? 'bg-blue-100'
+              : 'bg-slate-100'
+          }`}>
+            <Upload className={`w-8 h-8 ${
+              isDragging
+                ? 'text-blue-500'
+                : 'text-slate-400'
+            }`} />
+          </div>
+        </div>
+
+        <p className="text-lg font-bold text-slate-900 mb-2">
+          {uploading ? 'Uploading photos...' : 'Drop photos here or click to upload'}
         </p>
-        <p className="text-sm text-gray-500 mb-4">
-          Support for JPG, PNG, GIF, and more
+        <p className="text-sm text-slate-600 mb-6">
+          JPG, PNG, GIF and other image formats supported
         </p>
 
         {uploading && (
-          <div className="mt-4">
-            <div className="w-full bg-gray-200 rounded-full h-2">
+          <div className="mt-6 space-y-3">
+            <div className="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
               <div
-                className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                className="bg-gradient-to-r from-blue-500 to-cyan-500 h-2 rounded-full transition-all duration-300"
                 style={{ width: `${uploadProgress}%` }}
               />
             </div>
-            <p className="text-sm text-gray-600 mt-2">{Math.round(uploadProgress)}%</p>
+            <p className="text-sm font-semibold text-slate-700">{Math.round(uploadProgress)}% uploaded</p>
           </div>
         )}
 
         {!uploading && (
           <label
             htmlFor="file-upload"
-            className="inline-block bg-blue-600 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-blue-700 cursor-pointer transition-all"
+            className="inline-block bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/30 cursor-pointer transition-all hover:scale-105 active:scale-95"
           >
             Select Photos
           </label>
