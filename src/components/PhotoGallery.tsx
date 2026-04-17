@@ -91,10 +91,7 @@ export function PhotoGallery({ onPhotoClick, refreshTrigger }: PhotoGalleryProps
     return (
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
         {[...Array(12)].map((_, i) => (
-          <div
-            key={i}
-            className="aspect-square bg-gradient-to-br from-slate-200 to-slate-300 rounded-xl animate-pulse"
-          />
+          <div key={i} className="aspect-square bg-gray-200 rounded-lg animate-pulse" />
         ))}
       </div>
     );
@@ -102,36 +99,33 @@ export function PhotoGallery({ onPhotoClick, refreshTrigger }: PhotoGalleryProps
 
   if (photos.length === 0) {
     return (
-      <div className="text-center py-20">
-        <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-slate-200 to-slate-300 rounded-2xl mb-6">
-          <div className="text-3xl">📷</div>
-        </div>
-        <h3 className="text-2xl font-bold text-slate-900 mb-2">No photos yet</h3>
-        <p className="text-slate-600 text-lg">Upload your first photo to get started</p>
+      <div className="text-center py-16">
+        <div className="text-gray-400 text-6xl mb-4">📷</div>
+        <h3 className="text-xl font-medium text-gray-700 mb-2">No photos yet</h3>
+        <p className="text-gray-500">Upload your first photo to get started</p>
       </div>
     );
   }
 
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-      {photos.map((photo, idx) => (
+      {photos.map((photo) => (
         <div
           key={photo.id}
-          className="group relative aspect-square bg-slate-200 rounded-xl overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300 animate-in fade-in"
-          style={{ animationDelay: `${idx * 50}ms` }}
+          className="group relative aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:shadow-lg transition-all"
           onClick={() => onPhotoClick(photo, photoUrls[photo.id])}
         >
           <img
             src={photoUrls[photo.id]}
             alt={photo.filename}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+            className="w-full h-full object-cover transition-transform group-hover:scale-105"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all" />
           <button
             onClick={(e) => handleDelete(e, photo)}
             disabled={deletingId === photo.id}
-            className="absolute top-3 right-3 bg-red-500/90 backdrop-blur-sm text-white p-2 rounded-lg opacity-0 group-hover:opacity-100 hover:bg-red-600 transition-all duration-300 disabled:opacity-50"
+            className="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 hover:bg-red-600 transition-all disabled:opacity-50"
           >
             <Trash2 className="w-4 h-4" />
           </button>

@@ -48,33 +48,30 @@ function MainApp() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-      <header className="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+    <div className="min-h-screen bg-gray-50">
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-11 h-11 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30">
+              <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
                 <Image className="w-6 h-6 text-white" />
               </div>
-              <div>
-                <h1 className="text-2xl font-bold text-slate-900 tracking-tight">PhotoVault</h1>
-                <p className="text-xs text-slate-500">Your photo library</p>
-              </div>
+              <h1 className="text-2xl font-bold text-gray-900">PhotoVault</h1>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <button
                 onClick={() => setShowUpload(!showUpload)}
-                className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-5 py-2.5 rounded-lg hover:shadow-lg hover:shadow-blue-500/30 transition-all font-medium text-sm"
+                className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-all font-medium"
               >
-                <UploadIcon className="w-4 h-4" />
-                <span className="hidden sm:inline">Upload</span>
+                <UploadIcon className="w-5 h-5" />
+                Upload
               </button>
               <button
                 onClick={handleSignOut}
-                className="flex items-center gap-2 text-slate-700 hover:text-slate-900 hover:bg-slate-100 px-4 py-2.5 rounded-lg transition-all font-medium text-sm"
+                className="flex items-center gap-2 text-gray-700 hover:text-gray-900 px-4 py-2 rounded-lg hover:bg-gray-100 transition-all"
               >
-                <LogOut className="w-4 h-4" />
+                <LogOut className="w-5 h-5" />
                 <span className="hidden sm:inline">Sign Out</span>
               </button>
             </div>
@@ -82,9 +79,9 @@ function MainApp() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {showUpload && (
-          <div className="mb-10 animate-in fade-in slide-in-from-top-4 duration-500">
+          <div className="mb-8">
             <PhotoUpload onUploadComplete={handleUploadComplete} />
           </div>
         )}
